@@ -1,16 +1,18 @@
 class Pessoa:
-   def __init__(self, *filhos, nome=None, idade=29):
-       self.idade = idade
-       self.nome = nome
-       self.filhos = list(filhos)
+    olhos = 2
 
-   def cumprimentar(self):
-       return f'Olá {id(self)}'
+    def __init__(self, *filhos, nome=None, idade=29):
+        self.idade = idade
+        self.nome = nome
+        self.filhos = list(filhos)
+
+    def cumprimentar(self):
+        return f'Olá {id(self)}'
 
 
 if __name__ == '__main__':
     renzo = Pessoa(nome='Renzo')
-    luciano = Pessoa( renzo, nome='Luciano')
+    luciano = Pessoa(renzo, nome='Luciano')
     print(Pessoa.cumprimentar(luciano))
     print(id(luciano))
     print(luciano.cumprimentar())
@@ -20,5 +22,12 @@ if __name__ == '__main__':
         print(filho.nome)
     luciano.sobrenome = 'Ramalho'
     del luciano.filhos
-    print(luciano.__dict__)
+    luciano.olhos = 1
+    del luciano.olhos
     print(renzo.__dict__)
+    print(luciano.__dict__)
+    Pessoa.olhos = 3
+    print(Pessoa.olhos)
+    print(luciano.olhos)
+    print(renzo.olhos)
+    print(id(Pessoa.olhos), id(luciano.olhos), id(renzo.olhos))
